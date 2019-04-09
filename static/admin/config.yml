@@ -29,7 +29,8 @@ collections:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "blog-post"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Teaser Image", name: "teaserImage", widget: "image"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Poster Image", name: "teaserImage", widget: "image"}
       - {label: "Embed", name: "embed", widget: "text"}
 
   - name: "pages"
@@ -51,7 +52,6 @@ collections:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "about-page"}
           - {label: "Title", name: "title", widget: "string"}
           - {label: "Body", name: "body", widget: "markdown"}
-          - {label: "Image", name: "image", widget: "image"}
           - label: "Gallery"
             name: "galleryImages"
             widget: "list"
