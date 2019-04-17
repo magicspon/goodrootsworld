@@ -1,87 +1,95 @@
-const _ = require('lodash')
-const path = require('path')
-const { createFilePath } = require('gatsby-source-filesystem')
-const { fmImagesToRelative } = require('gatsby-remark-relative-images')
+const path = require(`path`)
+const glob = require('glob')
+const merge = require('webpack-merge')
+const PurgeCssPlugin = require('purgecss-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const { createFilePath } = require(`gatsby-source-filesystem`)
 
-exports.createPages = ({ actions, graphql }) => {
-  const { createPage } = actions
+const purgeConfig = {
+	paths: glob.sync(path.join(__dirname, '/src/**/**/**/*.js'), {
+		nodir: true
+	}),
+	extractors: [
+		{
+			extractor: class {
+				static extract(content) {
+					return content.match(/[A-Za-z0-9-_:/]+/g) || []
+				}
+			},
+			extensions: ['js']
+		}
+	],
+	whitelist: [''],
+	whitelistPatterns: [/headroom/, /module--/]
+}
 
-  return graphql(`
-    {
-      allMarkdownRemark(limit: 1000) {
-        edges {
-          node {
-            id
-            fields {
-              slug
-            }
-            frontmatter {
-              tags
-              templateKey
-            }
-          }
-        }
-      }
-    }
-  `).then(result => {
-    if (result.errors) {
-      result.errors.forEach(e => console.error(e.toString()))
-      return Promise.reject(result.errors)
-    }
+exports.onCreateWebpackConfig = ({ actions, stage, getConfig }) => {
+	const prevConfig = getConfig()
 
-    const posts = result.data.allMarkdownRemark.edges
+	actions.replaceWebpackConfig(
+		merge(prevConfig, {
+			output: {
+				globalObject: 'this' // required for webworkers
+			},
 
-    posts.forEach(edge => {
-      const id = edge.node.id
-      createPage({
-        path: edge.node.fields.slug,
-        tags: edge.node.frontmatter.tags,
-        component: path.resolve(
-          `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
-        ),
-        // additional data can be passed via context
-        context: {
-          id,
-        },
-      })
-    })
+			resolve: {
+				alias: {
+					'@': path.resolve(__dirname, '/src/')
+				},
+				mainFields: ['browser', 'module', 'main']
+			},
 
-    // Tag pages:
-    let tags = []
-    // Iterate through each post, putting all found tags into `tags`
-    posts.forEach(edge => {
-      if (_.get(edge, `node.frontmatter.tags`)) {
-        tags = tags.concat(edge.node.frontmatter.tags)
-      }
-    })
-    // Eliminate duplicate tags
-    tags = _.uniq(tags)
+			module: {
+				rules: [
+					{
+						test: /\.(ttf|woff|woff2|eot|svg)$/,
+						use: 'file-loader?name=[name].[ext]',
+						exclude: /\.inline.svg$/
+					},
+					{
+						test: /\.inline.svg$/,
+						use: [
+							{ loader: 'babel-loader' },
+							{
+								loader: 'react-svg-loader',
+								options: {
+									jsx: true
+								}
+							}
+						]
+					}
+				]
+			}
+		})
+	)
 
-    // Make tag pages
-    tags.forEach(tag => {
-      const tagPath = `/tags/${_.kebabCase(tag)}/`
+	// Add PurgeCSS in production
+	// See: https://github.com/gatsbyjs/gatsby/issues/5778#issuecomment-402481270
+	if (stage.includes('build')) {
+		actions.setWebpackConfig({
+			plugins: [
+				new PurgeCssPlugin(purgeConfig),
+				new OptimizeCSSAssetsPlugin({})
+			]
+		})
+	}
+}
 
-      createPage({
-        path: tagPath,
-        component: path.resolve(`src/templates/tags.js`),
-        context: {
-          tag,
-        },
-      })
-    })
-  })
+exports.onCreateBabelConfig = ({ actions }) => {
+	actions.setBabelPlugin({
+		name: 'babel-plugin-inline-react-svg'
+	})
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-  fmImagesToRelative(node) // convert image paths for gatsby images
+	const { createNodeField } = actions
 
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
-  }
+	if (node.internal.type === `MarkdownRemark`) {
+		const value = createFilePath({ node, getNode })
+		createNodeField({
+			name: `slug`,
+			node,
+			value
+		})
+	}
 }

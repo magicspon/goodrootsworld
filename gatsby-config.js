@@ -1,99 +1,82 @@
-var proxy = require("http-proxy-middleware")
+const { plugins } = require('./postcss.config')
 
 module.exports = {
-  siteMetadata: {
-    title: 'Good Roots World',
-    description: 'Good Roots World',
-  },
-  plugins: [
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sass',
-    {
-      // keep as first gatsby-source-filesystem plugin for gatsby image support
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/static/img`,
-        name: 'uploads',
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/pages`,
-        name: 'pages',
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/img`,
-        name: 'images',
-      },
-    },
-    'gatsby-plugin-sharp',
-		'gatsby-transformer-sharp',
+	siteMetadata: {
+		title: `spon.io`,
+		author: `Dave Stockley`,
+		description: `Freelance Frontend Web Developer based in Bristol, UK. React, Gatsby, Javascript, CSS, Craftcms`,
+		siteUrl: `https://spon.io/`,
+		social: {
+			twitter: `magicspon`
+		}
+	},
+	plugins: [
 		{
-			resolve: `gatsby-source-instagram`,
+			resolve: `gatsby-source-filesystem`,
 			options: {
-				username: `goodrootsworld`,
-				access_token: "cb260ad1d70540d4b37e6ee92bea902f",
-				instagram_id: "36523333",
-			},
+				name: `uploads`,
+				path: `${__dirname}/static/img`
+			}
 		},
-    {
-      resolve: 'gatsby-transformer-remark',
-      options: {
-        plugins: [
-          {
-            resolve: 'gatsby-remark-relative-images',
-            options: {
-              name: 'uploads',
-            },
-          },
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              // It's important to specify the maxWidth (in pixels) of
-              // the content container as this plugin uses this as the
-              // base for generating different widths of each image.
-              maxWidth: 2048,
-            },
-          },
-          {
-            resolve: 'gatsby-remark-copy-linked-files',
-            options: {
-              destinationDir: 'static',
-            },
-          },
-        ],
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-netlify-cms',
-      options: {
-        modulePath: `${__dirname}/src/cms/cms.js`,
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-purgecss', // purges all unused/unreferenced css rules
-      options: {
-        develop: true, // Activates purging in npm run develop
-        purgeOnly: ['/all.sass'], // applies purging only on the bulma css file
-      },
-    }, // must be after other CSS plugins
-    'gatsby-plugin-netlify', // make sure to keep it last in the array
-  ],
-  // for avoiding CORS while developing Netlify Functions locally
-  // read more: https://www.gatsbyjs.org/docs/api-proxy/#advanced-proxying
-  developMiddleware: app => {
-    app.use(
-      "/.netlify/functions/",
-      proxy({
-        target: "http://localhost:9000",
-        pathRewrite: {
-          "/.netlify/functions/": "",
-        },
-      })
-    )
-  },
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				path: `${__dirname}/content`,
+				name: `work`
+			}
+		},
+		{
+			resolve: `gatsby-plugin-postcss`,
+			options: {
+				postCssPlugins: plugins
+			}
+		},
+		`gatsby-transformer-sharp`,
+		`gatsby-plugin-sharp`,
+
+		{
+			resolve: `gatsby-transformer-remark`,
+			options: {
+				plugins: [
+					{
+						resolve: `gatsby-remark-images`,
+						options: {
+							maxWidth: 590
+						}
+					},
+					{
+						resolve: `gatsby-remark-responsive-iframe`,
+						options: {
+							wrapperStyle: `margin-bottom: 1.0725rem`
+						}
+					},
+					`gatsby-remark-prismjs`,
+					`gatsby-remark-copy-linked-files`,
+					`gatsby-remark-smartypants`
+				]
+			}
+		},
+		// {
+		// 	resolve: `gatsby-plugin-manifest`,
+		// 	options: {
+		// 		name: `Spon | Frontend Developer`,
+		// 		short_name: `spon.io`,
+		// 		start_url: `/`,
+		// 		background_color: `#ffffff`,
+		// 		theme_color: `#141C39`,
+		// 		display: `minimal-ui`,
+		// 		icon: `content/assets/gatsby-icon.png`
+		// 	}
+		// },
+		// `gatsby-plugin-offline`,
+		`gatsby-plugin-react-helmet`,
+
+		{
+			resolve: 'gatsby-plugin-netlify-cms'
+			// options: {
+			// 	modulePath: `${__dirname}/src/cms/cms.js`
+			// }
+		},
+		'gatsby-plugin-netlify' // make sure to keep it last in the array
+	]
 }

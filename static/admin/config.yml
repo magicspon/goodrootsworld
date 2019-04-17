@@ -8,7 +8,7 @@ public_folder: /img
 collections:
   - name: "articles"
     label: "Articles"
-    folder: "src/pages/articles"
+    folder: "content/articles"
     create: true
     slug: "{{slug}}"
     fields:
@@ -22,11 +22,11 @@ collections:
       
   - name: "videos"
     label: "Videos"
-    folder: "src/pages/videos"
+    folder: "content/videos"
     create: true
     slug: "{{slug}}"
     fields:
-      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "blog-post"}
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "video-page"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Body", name: "body", widget: "markdown"}
@@ -36,7 +36,7 @@ collections:
   - name: "pages"
     label: "Pages"
     files:  
-      - file: "src/pages/about/index.md"
+      - file: "content/about/index.md"
         label: "About"
         name: "about"
         fields:
@@ -45,7 +45,7 @@ collections:
           - {label: "Body", name: "body", widget: "markdown"}
           - {label: "Image", name: "image", widget: "image"}
 
-      - file: "src/pages/home/index.md"
+      - file: "content/home/index.md"
         label: "Home"
         name: "home"
         fields:
