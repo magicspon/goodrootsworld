@@ -3,16 +3,17 @@
 @tailwind screens;
 
 body {
-	@apply font-serif text-black text-rg leading-normal;
+	@apply font-serif text-black leading-normal;
 }
 
 body::after {
 	@apply visuallyhidden;
+
 	content: 'root';
 }
 
 a {
-	@apply text-brand;
+	@apply text-blue-900;
 
 	text-decoration: none;
 }

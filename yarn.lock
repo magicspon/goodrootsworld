@@ -12070,6 +12070,11 @@ normalize-url@^3.0.0:
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-3.3.0.tgz#b2e1c4dc4f7c6d57743df733a4f5978d18650559"
   integrity sha512-U+JJi7duF1o+u2pynbp2zXDW2/PADgC30f0GsHZtRh+HOcXHnw137TrNlyxxRvWW5fjKd3bcLHPxofWuCjaeZg==
 
+normalize.css@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/normalize.css/-/normalize.css-8.0.1.tgz#9b98a208738b9cc2634caacbc42d131c97487bf3"
+  integrity sha512-qizSNPO93t1YUuUhP22btGOo3chcvDFqFaj2TRybP0DMxkHOCTYwp3n34fel4a31ORXy4m1Xq0Gyqpb5m33qIg==
+
 npm-bundled@^1.0.1:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/npm-bundled/-/npm-bundled-1.0.6.tgz#e7ba9aadcef962bb61248f91721cd932b3fe6bdd"
@@ -17068,26 +17073,25 @@ tailwindcss-visuallyhidden@^1.0.2:
   resolved "https://registry.yarnpkg.com/tailwindcss-visuallyhidden/-/tailwindcss-visuallyhidden-1.0.2.tgz#cdf178208282d1787e72186df2cf9d1286347667"
   integrity sha512-Hk3Do4x9nAz43CGzcxXqdAhsQs+bE6tUhlcHWBvLC4F8WjqbiGIcp1jPPHmXBAv41D8kFIH0UZyLGw490upsKg==
 
-tailwindcss@^0.7.4:
-  version "0.7.4"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-0.7.4.tgz#fb7926821d42eacdc12e6621a49d21f37a3ff9e9"
-  integrity sha512-+GeQjHRJ2VmeLkrNwMCbPDfm2cc5P8eoc7n+DtZfI8oQdlo5eSHqsIlPEuZOtoqQlIALsd2jAggWrUUBFGP2ow==
+tailwindcss@^1.0.0-beta.4:
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.0.0-beta.4.tgz#b69ab23c8ad6b937c12598310d44589f1d9f5d27"
+  integrity sha512-He5eWVg3ZxHWBwabh+w8yBu1mTyat4fvPpIobteAXtxDxEk+gSY7U2DoxpWq42r7EKr/rxRVsJXw3L6cL87I4A==
   dependencies:
     autoprefixer "^9.4.5"
     bytes "^3.0.0"
     chalk "^2.4.1"
-    css.escape "^1.5.1"
-    fs-extra "^4.0.2"
-    lodash "^4.17.5"
+    fs-extra "^7.0.1"
+    lodash "^4.17.11"
     node-emoji "^1.8.1"
+    normalize.css "^8.0.1"
     perfectionist "^2.4.0"
     postcss "^7.0.11"
     postcss-functions "^3.0.0"
     postcss-js "^2.0.0"
     postcss-nested "^4.1.1"
-    postcss-selector-parser "^5.0.0"
+    postcss-selector-parser "^6.0.0"
     pretty-hrtime "^1.0.3"
-    strip-comments "^1.0.2"
 
 tapable@^1.0.0, tapable@^1.1.0:
   version "1.1.3"

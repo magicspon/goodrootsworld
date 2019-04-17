@@ -1,5 +1,5 @@
 .content {
-	@apply text-white text-rg;
+	/* 	@apply text-black text-rg; */
 
 	* {
 		@apply mb-4;

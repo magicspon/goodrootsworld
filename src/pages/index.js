@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+// import { graphql } from 'gatsby'
 
 import '@/styles/style.css'
 
@@ -14,12 +14,12 @@ function BlogIndex() {
 
 export default BlogIndex
 
-export const pageQuery = graphql`
-	query {
-		site {
-			siteMetadata {
-				title
-			}
-		}
-	}
-`
+// export const pageQuery = graphql`
+// 	query {
+// 		site {
+// 			siteMetadata {
+// 				title
+// 			}
+// 		}
+// 	}
+// `

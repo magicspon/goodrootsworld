@@ -1,21 +1,28 @@
 import React from 'react'
 import { string } from 'prop-types'
-import Linkedin from '@/icons/linkedin.inline.svg'
-import Github from '@/icons/github.inline.svg'
+import Facebook from '@/icons/facebook.inline.svg'
+import Twitter from '@/icons/twitter.inline.svg'
+import Instagram from '@/icons/instagram.inline.svg'
 import VisuallyHidden from '@/helpers/VisuallyHidden'
 
 const Social = ({ linkedin, github }) => (
-	<ul className="list-reset flex items-center justify-center">
+	<ul className="list-none flex items-center justify-center">
 		<li className="mx-3">
-			<a href={linkedin} className="text-white lg:text-white-40">
-				<Linkedin className="fill-current" />
-				<VisuallyHidden>LinkedIn</VisuallyHidden>
+			<a href={linkedin} className="text-black lg:text-black-40 block">
+				<Facebook className="fill-current h-6" />
+				<VisuallyHidden>Facebook</VisuallyHidden>
 			</a>
 		</li>
 		<li className="mx-3">
-			<a href={github} className="text-white lg:text-white-40">
-				<Github className="fill-current" />
-				<VisuallyHidden>github</VisuallyHidden>
+			<a href={github} className="text-black lg:text-black-40 block">
+				<Twitter className="fill-current h-6" />
+				<VisuallyHidden>Twitter</VisuallyHidden>
+			</a>
+		</li>
+		<li className="mx-3">
+			<a href={github} className="text-black lg:text-black-40 block">
+				<Instagram className="fill-current h-6" />
+				<VisuallyHidden>Instagram</VisuallyHidden>
 			</a>
 		</li>
 	</ul>
