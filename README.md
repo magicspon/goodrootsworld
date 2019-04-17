@@ -1,3 +1,3 @@
-# spon.io
+# goodrootsworld.com
 
-Source code for spon.io. Built with gatsby
+Gatsby + NetlifyCMS
