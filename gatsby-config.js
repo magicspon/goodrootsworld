@@ -56,6 +56,13 @@ module.exports = {
 				]
 			}
 		},
+		{
+			resolve: `gatsby-source-instagram`,
+			options: {
+				username: `goodrootsworld`
+			}
+		},
+
 		// {
 		// 	resolve: `gatsby-plugin-manifest`,
 		// 	options: {

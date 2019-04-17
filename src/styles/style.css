@@ -51,3 +51,10 @@ img {
 		content: 'xl';
 	}
 }
+
+pre {
+	overflow: hidden;
+	width: 100%;
+	display: block;
+	white-space: pre-wrap;
+}
