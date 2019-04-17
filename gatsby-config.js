@@ -31,7 +31,15 @@ module.exports = {
       },
     },
     'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
+		'gatsby-transformer-sharp',
+		{
+			resolve: `gatsby-source-instagram`,
+			options: {
+				username: `goodrootsworld`,
+				access_token: "cb260ad1d70540d4b37e6ee92bea902f",
+				instagram_id: "36523333",
+			},
+		},
     {
       resolve: 'gatsby-transformer-remark',
       options: {
