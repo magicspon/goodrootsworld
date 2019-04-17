@@ -4,6 +4,7 @@ const merge = require('webpack-merge')
 const PurgeCssPlugin = require('purgecss-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const R = require('ramda')
 
 const purgeConfig = {
 	paths: glob.sync(path.join(__dirname, '/src/**/**/**/*.js'), {
@@ -92,4 +93,50 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 			value
 		})
 	}
+}
+
+exports.createPages = ({ actions, graphql }) => {
+	const { createPage } = actions
+
+	return graphql(`
+		{
+			allMarkdownRemark(limit: 1000) {
+				edges {
+					node {
+						id
+						fields {
+							slug
+						}
+						frontmatter {
+							templateKey
+						}
+					}
+				}
+			}
+		}
+	`).then(({ errors, data }) => {
+		if (errors) {
+			// eslint-disable-next-line no-console
+			errors.forEach(e => console.error(e.toString()))
+			return Promise.reject(errors)
+		}
+
+		const { edges } = data.allMarkdownRemark
+
+		edges.forEach(({ node }) => {
+			const { id, fields, frontmatter } = node
+
+			createPage({
+				path: fields.slug,
+				tags: frontmatter.tags,
+				component: path.resolve(
+					`src/templates/${String(frontmatter.templateKey)}.js`
+				),
+				// additional data can be passed via context
+				context: {
+					id
+				}
+			})
+		})
+	})
 }
