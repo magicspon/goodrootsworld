@@ -1,5 +1,14 @@
 import React from 'react'
+import Layout from '@/container/Layout'
 
-export default () => {
-	return <div>video post</div>
+function TemplateVideo() {
+	return (
+		<Layout>
+			<div className="flex items-center flex-col justify-center">
+				video page
+			</div>
+		</Layout>
+	)
 }
+
+export default TemplateVideo

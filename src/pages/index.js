@@ -1,25 +1,15 @@
 import React from 'react'
-// import { graphql } from 'gatsby'
+import Layout from '@/container/Layout'
 
-import '@/styles/style.css'
-
-function BlogIndex() {
+function PageHome() {
 	return (
-		<div className="flex items-center flex-col justify-center h-screen">
-			<h1 className="mb-2">Good Roots World</h1>
-			<p>coming soon...</p>
-		</div>
+		<Layout>
+			<div className="flex items-center flex-col justify-center">
+				<h1 className="mb-2">Good Roots World</h1>
+				<p>coming soon...</p>
+			</div>
+		</Layout>
 	)
 }
 
-export default BlogIndex
-
-// export const pageQuery = graphql`
-// 	query {
-// 		site {
-// 			siteMetadata {
-// 				title
-// 			}
-// 		}
-// 	}
-// `
+export default PageHome

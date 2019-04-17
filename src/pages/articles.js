@@ -1,14 +1,14 @@
 import React from 'react'
 import Layout from '@/container/Layout'
 
-function TemplateAbout() {
+function PageArticles() {
 	return (
 		<Layout>
 			<div className="flex items-center flex-col justify-center">
-				about page
+				articles page
 			</div>
 		</Layout>
 	)
 }
 
-export default TemplateAbout
+export default PageArticles

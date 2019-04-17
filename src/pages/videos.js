@@ -1,14 +1,14 @@
 import React from 'react'
 import Layout from '@/container/Layout'
 
-function TemplateAbout() {
+function PageVideos() {
 	return (
 		<Layout>
 			<div className="flex items-center flex-col justify-center">
-				about page
+				video page
 			</div>
 		</Layout>
 	)
 }
 
-export default TemplateAbout
+export default PageVideos
