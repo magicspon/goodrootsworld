@@ -38,7 +38,20 @@ export const pageQuery = graphql`
 						templateKey
 						date
 						description
-						teaserImage
+						teaserImage {
+							childImageSharp {
+								fluid {
+									base64
+									tracedSVG
+									aspectRatio
+									src
+									srcSet
+									srcWebp
+									srcSetWebp
+									sizes
+								}
+							}
+						}
 						embed
 					}
 				}

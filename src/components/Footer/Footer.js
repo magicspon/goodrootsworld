@@ -4,7 +4,7 @@ import Social from '@/components/Social/Social'
 const year = new Date().getFullYear()
 const Footer = () => (
 	<div className="bg-dark p-6 md:flex justify-between items-center flex-row-reverse w-full">
-		<div className="mb-7 md:mb-0">
+		<div className="mb-4 md:mb-0">
 			<Social facebook="#0" twitter="#0" instagram="#0" />
 		</div>
 

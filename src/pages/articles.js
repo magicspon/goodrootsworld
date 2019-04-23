@@ -39,7 +39,20 @@ export const pageQuery = graphql`
 						title
 						date
 						description
-						teaserImage
+						teaserImage {
+							childImageSharp {
+								fluid {
+									base64
+									tracedSVG
+									aspectRatio
+									src
+									srcSet
+									srcWebp
+									srcSetWebp
+									sizes
+								}
+							}
+						}
 						embed
 					}
 					html

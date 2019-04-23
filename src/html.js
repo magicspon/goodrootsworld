@@ -2,7 +2,6 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import 'typeface-kameron'
 
 const HTML = ({
 	htmlAttributes,

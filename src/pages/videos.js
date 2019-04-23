@@ -38,7 +38,20 @@ export const pageQuery = graphql`
 					frontmatter {
 						title
 						description
-						teaserImage
+						teaserImage {
+							childImageSharp {
+								fluid {
+									base64
+									tracedSVG
+									aspectRatio
+									src
+									srcSet
+									srcWebp
+									srcSetWebp
+									sizes
+								}
+							}
+						}
 						embed
 					}
 				}

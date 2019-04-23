@@ -22,8 +22,8 @@ function PageImage({ data }) {
 								}
 							}
 						}) => (
-							<div style={{ width: 400 }}>
-								<Img key={id} fluid={fluid} />
+							<div key={id} style={{ width: 400 }}>
+								<Img fluid={fluid} />
 							</div>
 						)
 					)}

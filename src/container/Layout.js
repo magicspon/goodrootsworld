@@ -4,6 +4,7 @@ import { element } from 'prop-types'
 import { graphql, useStaticQuery } from 'gatsby'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import 'typeface-kameron'
 
 const useSiteMetadata = () => {
 	const { site } = useStaticQuery(

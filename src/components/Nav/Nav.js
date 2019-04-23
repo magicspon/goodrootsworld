@@ -14,7 +14,7 @@ const Item = ({ title, slug, last = false }) => (
 			'md:ml-4': last
 		})}
 	>
-		<Link to={slug} className="text-black md:text-black">
+		<Link to={slug} className="text-gray-700">
 			{title}
 		</Link>
 	</li>
@@ -28,16 +28,14 @@ Item.propTypes = {
 
 const Nav = () => (
 	<nav className={styles.nav}>
-		<ul className="list-none md:flex md:mr-8">
+		<ul className="list-none md:flex md:mr-8 mb-8 md:mb-0">
 			<Item title="About" slug="/about/" />
 			<Item title="Video" slug="/videos/" />
 			<Item title="Articles" slug="/articles/" />
 			<Item title="Image" last slug="/images/" />
 		</ul>
 
-		<div className="mt-auto">
-			<Social facebook="#0" twitter="#0" instagram="#0" />
-		</div>
+		<Social facebook="#0" twitter="#0" instagram="#0" />
 	</nav>
 )
 

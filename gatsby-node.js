@@ -4,6 +4,8 @@ const merge = require('webpack-merge')
 const PurgeCssPlugin = require('purgecss-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const { fmImagesToRelative } = require('gatsby-remark-relative-images')
+
 const R = require('ramda')
 
 const purgeConfig = {
@@ -43,11 +45,6 @@ exports.onCreateWebpackConfig = ({ actions, stage, getConfig }) => {
 			module: {
 				rules: [
 					{
-						test: /\.(ttf|woff|woff2|eot|svg)$/,
-						use: 'file-loader?name=[name].[ext]',
-						exclude: /\.inline.svg$/
-					},
-					{
 						test: /\.inline.svg$/,
 						use: [
 							{ loader: 'babel-loader' },
@@ -84,6 +81,7 @@ exports.onCreateBabelConfig = ({ actions }) => {
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
 	const { createNodeField } = actions
+	fmImagesToRelative(node)
 
 	if (node.internal.type === `MarkdownRemark`) {
 		const value = createFilePath({ node, getNode })

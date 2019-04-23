@@ -36,7 +36,20 @@ export const pageQuery = graphql`
 				title
 				description
 				embed
-				teaserImage
+				teaserImage {
+					childImageSharp {
+						fluid {
+							base64
+							tracedSVG
+							aspectRatio
+							src
+							srcSet
+							srcWebp
+							srcSetWebp
+							sizes
+						}
+					}
+				}
 			}
 			html
 		}

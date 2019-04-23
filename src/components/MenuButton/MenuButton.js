@@ -18,7 +18,7 @@ const MenuButton = ({ isOpen = true, className }) => (
 				styles.line,
 				{ [styles['top-closed']]: !isOpen },
 				{ [styles['top-open']]: isOpen },
-				'bg-blue-300 absolute inset-y-0 my-auto'
+				'bg-gray-700 absolute inset-y-0 my-auto'
 			)}
 		/>
 		<span
@@ -26,7 +26,7 @@ const MenuButton = ({ isOpen = true, className }) => (
 				styles.line,
 				{ [styles['middle-closed']]: !isOpen },
 				{ [styles['middle-open']]: isOpen },
-				'bg-blue-300 absolute inset-y-0 my-auto'
+				'bg-gray-700 absolute inset-y-0 my-auto'
 			)}
 		/>
 		<span
@@ -34,7 +34,7 @@ const MenuButton = ({ isOpen = true, className }) => (
 				styles.line,
 				{ [styles['bottom-closed']]: !isOpen },
 				{ [styles['bottom-open']]: isOpen },
-				'bg-blue-300 absolute inset-y-0 my-auto'
+				'bg-gray-700 absolute inset-y-0 my-auto'
 			)}
 		/>
 		<VisuallyHidden>MclassNames(enu button</VisuallyHidden>
