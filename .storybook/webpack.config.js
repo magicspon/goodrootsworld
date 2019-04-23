@@ -84,6 +84,7 @@ module.exports = async ({ config, mode }) => {
 	)
 
 	config.resolve.alias['@'] = path.resolve(__dirname, '../src/')
+	config.resolve.alias['~'] = path.resolve(__dirname, '../static/')
 
 	config.resolve.mainFields = ['browser', 'module', 'main']
 

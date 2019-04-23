@@ -58,3 +58,7 @@ pre {
 	display: block;
 	white-space: pre-wrap;
 }
+
+.wrapper {
+	@apply max-w-6xl mx-auto w-full px-4;
+}

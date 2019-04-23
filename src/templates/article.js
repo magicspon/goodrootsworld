@@ -29,8 +29,8 @@ TemplateArticle.propTypes = {
 export default TemplateArticle
 
 export const pageQuery = graphql`
-	query TemplateArticleQuery {
-		markdownRemark(frontmatter: { templateKey: { eq: "Article" } }) {
+	query TemplateArticleQuery($path: String!) {
+		markdownRemark(fields: { slug: { eq: $path } }) {
 			frontmatter {
 				title
 			}

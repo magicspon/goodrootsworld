@@ -1,18 +1,41 @@
 import React from 'react'
 import { shape, object } from 'prop-types'
-
 import { graphql } from 'gatsby'
-
 import Layout from '@/container/Layout'
+import Card from '@/components/Card'
 
 function PageArticles({ data }) {
 	const { edges } = data.allMarkdownRemark
+	const content = edges.map(
+		({
+			node: {
+				id,
+				frontmatter: { title, description, teaserImage },
+				fields: { slug }
+			}
+		}) => ({
+			id,
+			title,
+			description,
+			image: {
+				...teaserImage.childImageSharp.fluid,
+				alt: title
+			},
+			link: slug
+		})
+	)
 
 	return (
 		<Layout>
-			<div className="flex items-center flex-col justify-center">
+			<div className="wrapper">
 				<h1 className="mb-2">articles</h1>
-				<pre>{JSON.stringify(edges, null, 2)}</pre>
+				<div className="md:flex md:justify-start md:-ml-4">
+					{content.map(({ id, ...props }) => (
+						<div className="flex md:pl-4" key={id}>
+							<Card {...props} />
+						</div>
+					))}
+				</div>
 			</div>
 		</Layout>
 	)
@@ -35,6 +58,10 @@ export const pageQuery = graphql`
 		) {
 			edges {
 				node {
+					id
+					fields {
+						slug
+					}
 					frontmatter {
 						title
 						date

@@ -10,20 +10,21 @@ function PageImage({ data }) {
 
 	return (
 		<Layout>
-			<div className="flex items-center flex-col justify-center">
-				<h1 className="mb-2">Image</h1>
-				<div className="flex flex-wrap">
+			<div className="wrapper">
+				<h1 className="mb-2">images</h1>
+				<div className="md:flex md:flex-wrap md:justify-start md:-ml-4">
 					{edges.map(
 						({
 							node: {
 								id,
+								caption,
 								localFile: {
 									childImageSharp: { fluid }
 								}
 							}
 						}) => (
-							<div key={id} style={{ width: 400 }}>
-								<Img fluid={fluid} />
+							<div key={id} className="md:pl-4 w-full md:w-1/2 lg:w-1/4 mb-4">
+								<Img fluid={{ ...fluid, alt: caption }} />
 							</div>
 						)
 					)}

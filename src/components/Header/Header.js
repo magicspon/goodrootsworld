@@ -4,7 +4,7 @@ import Nav from '@/components/Nav/Nav'
 import MenuButton from '@/components/MenuButton/MenuButton'
 
 const Header = () => (
-	<header className="p-4 lg:p-6 flex items-center justify-start w-full">
+	<header className="wrapper py-4 lg:py-6 flex items-center justify-start w-full">
 		<Logo />
 		<Nav />
 		<MenuButton className="md:hidden" isOpen={false} />
